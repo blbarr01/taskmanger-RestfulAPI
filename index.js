@@ -4,6 +4,7 @@ const tasks = require('./routes/tasks.js');
 const bodyParser = require('body-parser');
 const db = require('./db.js')
 const User = require('./models/User.js')
+const path = require('path');
 
 const app = express()
 const PORT = 8000
@@ -15,7 +16,11 @@ app.use('/birds', birds)
     .use('/tasks',tasks)
 
 app.get('/',(req, res)=>{
-    res.send("/made it home!")
+    let file = path.join(__dirname, "views/index.html")
+    res.sendFile(file,(err)=>{
+    err ? console.error( ) : console.log('file sent')
+    })
+    
 })
 
 app.post('/database', async (req,res) =>{

@@ -6,19 +6,15 @@ router.use((req, res, next) => {
   console.log('Time: ', Date.now())
   next()
 })
-// define the home page route
-router.get('/', (req, res) => {
-  res.send('Birds home page')
-})
 
-router.post('/', (req,res)=>{
+// define the home page routes
+router.get('/', (req, res) => {
+  res.send('user home page')
+})
+.post('/', (req,res)=>{
     console.log(req.body);
     res.send("new bird added")
 })
 
-// define the about route
-router.get('/about', (req, res) => {
-  res.send('About birds')
-})
 
 module.exports = router

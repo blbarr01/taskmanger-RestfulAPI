@@ -6,7 +6,7 @@ module.exports = async () =>{
         const conn =  await mongoose.connect(process.env.DB)
         return conn
     }catch(err){
-        console.log(err);
-        throw err
+        console.error(err);
+        
     }
 }       

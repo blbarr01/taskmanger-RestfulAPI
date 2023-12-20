@@ -15,31 +15,9 @@ router.get('/', async (req, res) => {
     })
   }
 })
-.get('/:id', async (req, res) => {
-  console.log(req.params.id);
-  try {
-    const data = await User.findById(req.params.id)
-    res.send(data)
-    
-  } catch (error) {
-    res.status(401).send({
-      errmsg: "no resource found"
-    })
-  }
+.get('/:id', (req, res)=>{console.log('nothing')})
 
-})
-
-.post('/', async (req,res)=>{
-  let user = req.body
-  try {
-    let status = await User.create(user)
-    res.status(201)
-    .send(status.$set("msg","resource successfully created"))
-  } catch (error) {
-    console.error(error);
-  }
-    
-})
+.post('/',(req, res)=>{console.log('nothing')})
 
 
 

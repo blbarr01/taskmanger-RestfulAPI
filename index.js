@@ -1,10 +1,9 @@
 const express = require('express');
-const user = require('./routes/user.js');
+const auth = require('./routes/auth.js');
 const tasks = require('./routes/tasks.js');
 const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./db.js');
-require('dotenv').config()
 
 const app = express()
 const PORT = 8000
@@ -14,7 +13,7 @@ app.use(bodyParser.json())
 
 // way to use routers as middle wear 
   .use('/api/tasks',tasks)
-  .use('/api/users', user)
+  .use('/api/auth', auth)
   //
   .get('/',(req, res)=>{
     let file = path.join(__dirname, "views/index.html")

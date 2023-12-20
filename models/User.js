@@ -1,6 +1,19 @@
 const mongoose = require('mongoose');
 const {Schema, model} = mongoose
-const {hashPassword} = require('../controllers/auth')
+const bcrypt = require('bcrypt');
+
+
+async function hashPassword(word){
+    try{
+        let salt = await bcrypt.genSalt()
+        let hash = await bcrypt.hash(word, salt)
+        return hash
+    }catch(err){
+        console.error(err);
+    }
+}
+
+
 const userSchema = new Schema({
     name:String,
     email:{

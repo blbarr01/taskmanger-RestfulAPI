@@ -10,6 +10,7 @@ const PORT = 8000
 
 app.use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
+  .use(express.static('public'))
 
 // way to use routers as middle wear 
   .use('/api/tasks',tasks)

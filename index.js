@@ -21,10 +21,26 @@ app.use(bodyParser.json())
     res.sendFile(file,(err)=>{
     err ? console.error( ) : console.log('file sent')
     })
-    
-})
+  })
+  .get('/login',(req, res)=>{
+    let file = path.join(__dirname, "views/login.html")
+    res.sendFile(file,(err)=>{
+    err ? console.error( ) : console.log('file sent')
+    })
+  })
+  .get('/register',(req, res)=>{
+    let file = path.join(__dirname, "views/register.html")
+    res.sendFile(file,(err)=>{
+    err ? console.error( ) : console.log('file sent')
+    })
+  })
 
-.listen(8000,async ()=>{
-    const conn = await db()
-    console.log(`server listening on port ${PORT}`);
-})
+  .listen(8000,async ()=>{
+
+    try {
+      const conn = await db()
+      console.log(`server listening on port ${PORT}`);
+    } catch (error) {
+      console.error(err);
+    }
+  })

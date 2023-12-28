@@ -13,9 +13,9 @@ class auth_controller{
     async register(req,res){
         let user = req.body
         try {
-          let status = await User.create(user)
+          await User.create(user)
           res.status(201)
-          .send(status.$set("msg","resource successfully created"))
+          .send({"status": "resource successfully created"})
         } catch (error) {
           console.error(error);
         }

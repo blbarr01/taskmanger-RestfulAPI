@@ -21,7 +21,6 @@ router.post('/',(req,res)=>{
         .json({
             task_id: getID(),
             created: getDate()
-
         })
         .end()
     }
@@ -30,6 +29,7 @@ router.post('/',(req,res)=>{
 })
 //read
 .get('/',(req, res)=>{
+
     res.send('all tasks here')
 })
 

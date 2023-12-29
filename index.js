@@ -34,6 +34,14 @@ app.use(bodyParser.json())
     err ? console.error( ) : console.log('file sent')
     })
   })
+  
+  .get('/tasks',(req, res)=>{
+    let file = path.join(__dirname, "views/tasks.html")
+    res.sendFile(file,(err)=>{
+    err ? console.error( ) : console.log('file sent')
+    })
+  })
+  
 
   .listen(8000,async ()=>{
 

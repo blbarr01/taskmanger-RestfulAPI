@@ -1,18 +1,25 @@
-function loginHandler(e){
-    console.log('you clicked');
-    console.log(e);
-}
 
-function RegisterHandler(e){
-    console.log('you clicked');
-    console.log(e);
-}
+
+
 
 
 $(document).ready(() => {
+  console.log('index page');
+  let obj = {
+    title:'halo',
+    characters:[
+      'arbitar',
+      'chief',
+      'cortona',
+      'johnson'
+    ],
+    release: 2001
+  }
 
-    $('#login').click(loginHandler)
-    $('#register').click(loginHandler)
+  let str = JSON.stringify(obj)
+
+  console.log(obj);
+  console.log(str);
 
 });
 

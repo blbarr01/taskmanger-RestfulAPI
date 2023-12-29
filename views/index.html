@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <title>taskmanager</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <script src="scripts/script.js" ></script>
 </head>
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="scripts/script.js" ></script>
+
     <header>
         <h1>task manager</h1>
         <p>a handy place to track what needs doing</p>
@@ -16,10 +18,13 @@
     <main>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam quod, tempore numquam repellat hic molestias iste.</p>
         <div class="link-container">
-            <p class="btn-link" id="login">login</p>
-            <p class="btn-link" id="register">sign up</p>
+            <a class="btn-link" href="/login">login<a>
+            <a class="btn-link" href="/register">sign up</a>
         </div>
-        <div class="form-wrapper">
+            <p>welcome to the page</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque amet odio ratione labore voluptatem maiores eveniet vel, incidunt unde! Quisquam dolor atque, voluptates itaque facere nisi veritatis eaque sapiente incidunt voluptatum dolorem accusantium aliquid corporis reiciendis perferendis consequatur eveniet quibusdam quas, vitae qui vel a officiis aut. Vel ratione corrupti dolores, amet sed, eos aspernatur minus asperiores voluptatem iure dicta expedita! Asperiores eveniet, quidem laudantium ipsum aliquam fugit, veritatis, ducimus est ullam voluptatibus praesentium nihil minus excepturi ut hic quaerat?</p>
+        </div>
+        <div id="results">
 
         </div>
     </main>

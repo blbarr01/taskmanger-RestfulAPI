@@ -23,17 +23,10 @@ class auth_controller{
       }
 
       async login(req, res){
-        console.log(req.params.id);
-        try {
-          const data = await User.findById(req.params.id)
-          res.send(data)
-          
-        } catch (error) {
-          res.status(401).send({
-            errmsg: "no resource found"
-          })
-        }
-      
+        console.log(req.body);
+        res.send({
+          msg: 'login attempt made'
+        })
       }
 
 }

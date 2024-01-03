@@ -1,40 +1,27 @@
 const express = require('express');
 const router = express.Router()
 const {getDate} = require('../custom-date.js')
+const verify_token = require('../middleware/auth.js')
 const uuid = require('uuid');
 const getID = uuid.v4
 
 
 const valid_users= [1,2]
 //create
-router.post('/',(req,res)=>{
-    console.log(req.body);
-    let user = req.body.user_id;
-    if(!valid_users.includes(Number(user))){
-        
-        res.status(401)
-        .send('sorry invalid user')
-        .end()
-    }
-    else{
-        res.status(201)
-        .json({
-            task_id: getID(),
-            created: getDate()
-        })
-        .end()
-    }
-    
+
+router.use(verify_token)
+.post('/',(req,res)=>{
+    res.send(post)
     
 })
 //read
 .get('/',(req, res)=>{
-
     res.send('all tasks here')
+    
 })
 
 .get('/:id',(req, res)=>{
-    res.send('all tasks here')
+    res.send('singular task')
 })
 
 //update

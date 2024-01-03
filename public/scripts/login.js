@@ -3,16 +3,29 @@ async function loginHandler(e){
     let form_data = new FormData(this)
     console.log(form_data);
 
-    let res = await fetch('/api/auth/login',{
-      method:'POST',
-      redirect:'follow',
-      body: JSON.stringify(form_data),
-      headers:{
-        "Content-Type": "application/json"
+    let test_entry = {
+      email:'test@test.mail',
+      password:'test1234'
+    }
+    try {
+      let res = await fetch('/api/auth/login',{
+        method:'POST',
+        redirect:'follow',
+        body: JSON.stringify(test_entry), // sub w/ form data for production
+        headers:{
+          "Content-Type": "application/json"
+        }
+      })
+      
+      let msg = await res.json()
+      console.log(msg);
+      if(res.status == 200){
+        window.location.href='/tasks'
       }
-    })
+    } catch (error) {
+        console.error(error);
+    }
 
-    console.log(res);
 
   }
 

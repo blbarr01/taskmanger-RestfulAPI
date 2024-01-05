@@ -4,11 +4,13 @@ const tasks = require('./routes/tasks.js');
 const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./db.js');
+const cookieParser = require('cookie-parser')
 
 const app = express()
 const PORT = 8000
 
 app.use(bodyParser.json())
+  .use(cookieParser())
   .use(bodyParser.urlencoded({ extended: false }))
   .use(express.static('public'))
 

@@ -1,25 +1,29 @@
 
-
-
-
-
-$(document).ready(() => {
-  console.log('index page');
-  let obj = {
-    title:'halo',
-    characters:[
-      'arbitar',
-      'chief',
-      'cortona',
-      'johnson'
-    ],
-    release: 2001
+const render_login = (e) =>{
+  e.preventDefault()
+  try {
+    $('#root').empty() 
+    .load('/login #content') 
+    
+  } catch(e) {
+    console.error(e); 
   }
+  
+  
+}
 
-  let str = JSON.stringify(obj)
+const render_registration = (e) => {
+  e.preventDefault()
+  $('#root').empty() 
 
-  console.log(obj);
-  console.log(str);
 
+}
+
+const render_index = (e) =>{
+  console.log('now rendering index');
+}
+// init 
+$(()=> {
+$('#btn-login').on('click', render_login)  
+$('.hm-lnk').on('click',render_index)
 });
-

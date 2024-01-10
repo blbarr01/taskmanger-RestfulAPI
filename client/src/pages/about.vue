@@ -16,17 +16,12 @@ async function makereq(){
   const data = await resp.json()
   console.log(data);
   } catch (error) {
+  
     console.error(error);  
   }
 }
 </script>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
+
 </style>

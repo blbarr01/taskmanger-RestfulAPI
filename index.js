@@ -20,7 +20,6 @@ use(express.static(path.join(__dirname+'/client/dist')))
   .use('/api/tasks',tasks)
   .use('/api/auth', auth)
   .get('/api/test/',(req, res)=>{
-    console.log('got a req');
     res.json({
       msg: 'were recieving you'
     })

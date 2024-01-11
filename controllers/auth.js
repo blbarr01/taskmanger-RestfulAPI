@@ -34,11 +34,12 @@ class auth_controller{
       if (verified == true){
         console.log('successful auth');
         let token = jwt.sign(db_res.toJSON(), process.env.JWT_SK)
-        res.status(200).
-        cookie('access_token', `Bearer ${token}`, {httpOnly:true,
+        res.status(200)
+        .cookie('access_token', `Bearer ${token}`, {
+          httpOnly:true,
           expires: new Date(Date.now() + 60000) 
-        }).
-        json({
+          })
+        .json({
           msg: "login successful",
           redirect: '/tasks/'
         })

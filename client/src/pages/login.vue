@@ -1,13 +1,17 @@
 <template>
-    <h2 class="text-2xl text-center">Sign in </h2>
-    <form @submit.prevent="onSubmit" action="sign-in" id="login-form" class="container flex flex-col mx-auto">
-        <label for="email">email</label>
-        <input v-model="email" type="email" id="email" name="email" class="text-black w-1/3">
+    <h2 class="text-2xl text-center my-6">Sign in </h2>
+    <form @submit.prevent="onSubmit" id="login-form" class="flex flex-col 
+    container bg-blue-950 rounded md:w-1/3 py-6 mx-auto space-y-4">
+        <label class="hidden" for="email">email</label>
+        <input v-model="email" type="email" id="email" 
+        name="email" placeholder="email" class="text-black sm:w-1/2 mx-auto">
 
-        <label for="password">password</label>
-        <input v-model="password" type="password" name="password" id="password" class="text-black w-1/3">
+        <label class="hidden" for="password">password</label>
+        <input v-model="password" type="password" name="password" 
+        id="password" placeholder="password" class="text-black sm:w-1/2 mx-auto">
             
-        <button class="mt-4 border-2 border-blue-400 w-1/4 hv">sign in</button>
+        <button class="my-4 mx-auto border-2 border-blue-400 
+        w-1/4 rounded hover:bg-blue-400">sign in</button>
     </form>
     <p></p>
 </template>

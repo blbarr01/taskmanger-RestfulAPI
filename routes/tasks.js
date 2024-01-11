@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const Task = require('../models/Task.js');
-const verify_token = require('../middleware/auth.js')
+const verify_token = require('../middleware/auth.middleware.js')
 const uuid = require('uuid');
 const getID = uuid.v4
 

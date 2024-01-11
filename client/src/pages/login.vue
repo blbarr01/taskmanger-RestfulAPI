@@ -11,7 +11,7 @@
         id="password" placeholder="password" class="text-black sm:w-1/2 mx-auto">
             
         <button class="my-4 mx-auto border-2 border-blue-400 
-        w-1/4 rounded hover:bg-blue-400">sign in</button>
+        w-1/4 rounded hover:bg-blue-400 hover:p-2">sign in</button>
     </form>
     <p></p>
 </template>

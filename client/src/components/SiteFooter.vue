@@ -18,6 +18,7 @@
         display: flex;
         flex-direction: row;
         gap: 1em;
+        cursor: pointer;
     }
     footer{
         border-top: 1px solid #8d898980;

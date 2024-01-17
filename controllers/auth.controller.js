@@ -14,16 +14,22 @@ class auth_controller{
 
   async register(req,res){
       let user = req.body
-      console.log(user);
       try {
-        //await User.create(user)
+        const db_res = await User.create(user)
         res.status(201)
         .send({
           "status": "resource successfully created",
           "redirect": '/tasks/'
         })
       } catch (error) {
-        console.error(error);
+        console.error(error.code);
+        if (error.code === 11000){
+          res.status(403)
+          .json({
+          "status" : "An account with that email already exists"
+          })
+        }
+        
       }
         
     }

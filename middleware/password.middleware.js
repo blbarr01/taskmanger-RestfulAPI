@@ -5,8 +5,9 @@ const verify_password = (req, res, next)=>{
         res
         .status(400)
         .json({msg:"password does not meet minimum security requirement"})
+    }else{
+        next()
     }
-    next()
 }
 
 module.exports = verify_password

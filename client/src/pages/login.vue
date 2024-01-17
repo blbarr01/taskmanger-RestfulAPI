@@ -17,10 +17,14 @@
 </template>
 
 <script setup>
+import {useRouter} from "vue-router/auto";
 import {ref} from 'vue'
-
+// routers must be declared in 'global' space (within the setup macro)
+// instatiating from within the onSubmit function throws errors 
+const router = useRouter()
 const email = ref('')
 const password = ref('')
+
 
 async function onSubmit(){
     const form_data = {
@@ -45,7 +49,9 @@ async function onSubmit(){
     try {
         const res = await fetch("http://localhost:8000/api/auth/login/", options)   
         let data = await res.json()
-        console.log(data);
+        if(res.status < 400){
+            router.push(data.redirect)
+        }
     } catch (error) {
        console.error(error); 
     }

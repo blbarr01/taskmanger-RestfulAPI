@@ -5,12 +5,12 @@
     class="flex flex-col gap-4 bg-blue-950 w-1/2 mx-auto space-y-4 py-4">
 <!-- email -->
         <label class="hidden" for="email">email</label>
-        <input type="email" id="email" name="email" placeholder="email" 
+        <input v-model:='email' type="email" id="email" name="email" placeholder="email" 
         class="text-black w-1/3 pt-1 mx-auto invalid:border-b-4 invalid:border-red-500">
 
 <!-- name -->
         <label class="hidden" for="name">name</label>
-        <input type="text" id="name" name="username" placeholder="user name"
+        <input v-model:='name' type="text" id="name" name="username" placeholder="user name"
         class="text-black w-1/3 pt-1 mx-auto">
 
 <!-- password -->
@@ -32,6 +32,7 @@
             (!isValid.conf || !isMatch) ? 'border-b-4 border-red-600' :'border-b-4 border-green-600',
             'text-black w-1/3 mx-auto pt-1' 
         ]">
+<!-- user feedback -->
         <div id="feedback" v-if="!isValid.conf"
         class="bg-red-600 mx-auto  w-1/3 p-2 rounded text-sm">
             <p>your password does not meet minimum requirements </p>
@@ -42,7 +43,9 @@
                 <li>be 8 characters or longer</li>
             </ul>
             <p v-if="!isMatch">passwords do not match</p>
+            <p v-if="!canSubmit"> something is wrong with your user info</p>
         </div>
+
 <!-- submit button -->
         <button class="mx-auto border-2 border-blue-400 w-1/4 rounded hover:bg-blue-400 hover:p-2">Register</button>
     </form>
@@ -55,6 +58,7 @@
     const password = ref('')
     const conf = ref('')
     const isMatch = ref(true)
+    const canSubmit = ref(true)
     const isValid = ref({
         password:true,
         conf:true
@@ -73,6 +77,15 @@
         return
     }
 
+    function verify_email(){
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if(!emailRegex.test(email.value)){
+            return false
+        }
+        
+        return true
+    }
+
     function verify_match(){
         password.value !== conf.value ? isMatch.value = false : isMatch.value = true
     }
@@ -81,7 +94,32 @@
 
 
     async function onSubmit(){
+        if(!isMatch.value && !isValid.value && verify_email()){
+            canSubmit.value = false
+            return
+        }
 
+        canSubmit.value = true
+        const user_data = {
+            email:email.value,
+            name:name.value,
+            password:password.value
+        };
+
+        console.log(user_data);
+        const req = new Request("http://localhost:8000/api/auth/register/",{
+            method:'POST',
+            mode:'cors',  
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(user_data)
+        });
+
+        const res = await fetch(req);
+        const res_data = await res.json();
+        console.log(res_data);
+        console.log(res.status);
     }
 </script>
 

@@ -6,20 +6,23 @@
 <!-- email -->
         <label class="hidden" for="email">email</label>
         <input v-model:='email' type="email" id="email" name="email" placeholder="email" 
-        class="text-black w-1/3 pt-1 mx-auto invalid:border-b-4 invalid:border-red-500">
+        class="text-black w-1/3 pt-1 pl-1 mx-auto invalid:border-b-4 invalid:border-red-500">
 
 <!-- name -->
         <label class="hidden" for="name">name</label>
         <input v-model:='name' type="text" id="name" name="username" placeholder="user name"
-        class="text-black w-1/3 pt-1 mx-auto">
-
+        class="text-black w-1/3 pt-1 pl-1 mx-auto">
+<!-- phone number -->
+        <label for="phone_number" class="hidden">Phone Number</label>
+        <input type="tel" name="phone_number" id="phone_number" placeholder="(123)456-7890" v-bind="tel_num"
+         class="text-black w-1/3 pt-1 pl-1 mx-auto">
 <!-- password -->
         <label for="password" class="hidden">password</label>
         <input type="password" name="password" id="password" placeholder="password"
         @keyup="verify_password(password, $event)" v-model="password" 
         :class="[
             (!isValid.password || !isMatch) ? 'border-b-4 border-red-600' :'border-b-4 border-green-600',
-            'text-black w-1/3 mx-auto pt-1' 
+            'text-black w-1/3 mx-auto pt-1 pl-1' 
         ]">
 
 
@@ -30,8 +33,9 @@
         @keyup="verify_password(conf, $event)"
         :class="[
             (!isValid.conf || !isMatch) ? 'border-b-4 border-red-600' :'border-b-4 border-green-600',
-            'text-black w-1/3 mx-auto pt-1' 
+            'text-black w-1/3 mx-auto pt-1 pl-1' 
         ]">
+
 <!-- user feedback -->
         <div id="feedback" v-if="!isValid.conf"
         class="bg-red-600 mx-auto  w-1/3 p-2 rounded text-sm">
@@ -57,6 +61,7 @@
     const name = ref('')
     const password = ref('')
     const conf = ref('')
+    const tel_num = ref('')
     const isMatch = ref(true)
     const canSubmit = ref(true)
     const isValid = ref({

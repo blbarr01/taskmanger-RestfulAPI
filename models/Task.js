@@ -3,7 +3,8 @@ const {Schema, model} = mongoose
 
 const taskSchema = new Schema({
     user_id:Schema.Types.ObjectId,
-    note:String, 
+    title: String,
+    notes:String, 
     completed_status: {
         required: false,
         type: Boolean,

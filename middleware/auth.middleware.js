@@ -6,8 +6,9 @@ const verify_token = (req, res, next) =>{
     //console.log("access token" + access_token);
     // if no token is found return error
     if (!access_token){
-        res.status(400)
-        res.send({msg: "no access token found, you are not allowed"})
+        return res
+        .status(400)
+        .send({msg: "no access token found, you are not allowed"})
     }
    
     // get token, verify signature, append the user_id to the response obj for use in the next "middleware"

@@ -4,8 +4,13 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 async function authenticate(pw, challenge){
+  try {
   const res = await bcrypt.compare(challenge, pw)
-  return res
+  return res   
+  } catch (error) {
+    return error   
+  }
+
 }
 
 
@@ -19,10 +24,9 @@ class auth_controller{
         res.status(201)
         .send({
           "status": "resource successfully created",
-          "redirect": '/tasks/'
+          "redirect": '/dashboard'
         })
       } catch (error) {
-        console.error(error.code);
         if (error.code === 11000){
           res.status(403)
           .json({
@@ -41,7 +45,15 @@ class auth_controller{
     try {
       let db_res = await User.findOne({email:user.email}).exec()
       let verified = await authenticate(db_res.password, challenge)
-      if (verified == true){
+
+      if (!verified){
+        res.
+        status(400).
+        json({
+          msg: "incorrect user credentials"
+        })
+      // used else block to accomodate async code
+      }else{
         console.log('successful auth');
         let token = jwt.sign(db_res.toJSON(), process.env.JWT_SK)
         res.status(200)
@@ -51,15 +63,8 @@ class auth_controller{
           })
         .json({
           msg: "login successful",
-          redirect: '/tasks/'
-        })
-
-      }else{
-        res.
-        status(400).
-        send({
-          msg: "incorrect user credentials"
-        })
+          redirect: '/dashboard'
+          })
       }
     } catch (error) {
       console.error(error);

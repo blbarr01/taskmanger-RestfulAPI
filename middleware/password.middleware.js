@@ -1,6 +1,7 @@
+const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])(.{8,})$/;
+
 const verify_password = (req, res, next)=>{
-    // check if the password contains: 1 special character, 1 number and is length >= 8
-    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])(.{8,})$/;
+    // check if the password contains: 1 special character, 1 number and it's length is >= 8
     if(!passwordRegex.test(req.body.password)){
         res
         .status(400)

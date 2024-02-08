@@ -17,7 +17,7 @@
             <div class="flex flex-row gap-4">
                 <label for="note" class="hidden">notes</label>
                 <input type="text" name="note" id="note" placeholder="additional notes" v-model="newNote" class="text-black">
-                <button class="bg-slate-300 text-blue-800  hover:bg-slate-200 hover:text-blue-900 rounded-lg p-2"
+                <button type="button" class="bg-slate-300 text-blue-800  hover:bg-slate-200 hover:text-blue-900 rounded-lg p-2"
                 @click="addNote">
                     add note
                 </button>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, toRaw } from 'vue';
 const title = ref('')
 const newNote = ref('')
 const notes = ref([])
@@ -54,13 +54,39 @@ function removeNote(n){
     notes.value = notes.value.filter((note) => note !== n)
 }
 
+function parseForm(){
+    return{
+        title:title.value,
+        notes:toRaw(notes.value),
+    }
+}
 async function handleSubmit() {
     if(!title.value){
         error.value = "all tasks must have a title"
         return 
     }
-    console.log('code shouldnt run unless you have a title');
+    error.value=""
+    const formData = parseForm()
+    const testData = {
+        title:"secure lifesuport",
+        notes:[
+            'there are 8 wheezers',
+            'they are connected to the hivemind'
+        ]
+    }
+    const req = new Request("http://localhost:8000/api/tasks/",{
+        method:'POST',
+        mode:'cors',  
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(testData)
+    });
+
+    const res = await fetch(req)
+    const data = await res.json(res)
+    console.log(data);
   }
 </script>
 
-<style></style>
+

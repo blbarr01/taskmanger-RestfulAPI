@@ -4,6 +4,7 @@
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/login">login</RouterLink>
         <RouterLink to="/register">register</RouterLink>
+        <RouterLink to="/dashboard">dashboard</RouterLink>
       </nav>
 </template>
 

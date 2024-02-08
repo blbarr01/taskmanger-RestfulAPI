@@ -67,6 +67,7 @@ async function handleSubmit() {
     }
     error.value=""
     const formData = parseForm()
+    
     const testData = {
         title:"secure lifesuport",
         notes:[

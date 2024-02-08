@@ -25,8 +25,18 @@
 <script setup>
 const props = defineProps(['id','title','notes','completed_status'])
 
-function handleDelete(id){
-    console.log(`deleting ${id}`);
+async function handleDelete(id){
+    let endpoint = `http://localhost:8000/api/tasks/${id}`
+
+    const req = new Request(endpoint,{
+            method:'Delete',
+            mode:'cors',  
+            headers:{
+                'Content-Type': 'application/json'
+            },
+        });
+    const res = await fetch(req)
+    console.log(await res.json());
 }
 
 

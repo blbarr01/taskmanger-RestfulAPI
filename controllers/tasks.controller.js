@@ -34,8 +34,18 @@ async function getTasks (req, res){
     res.json(data)
 }
 
+async function deleteTask(req, res){
+    let t_id = req.params.id
+    console.log(t_id);
+    let status = await Task.findByIdAndDelete(t_id)
+    console.log(status);
+    res.json({
+        msg: `attempting to delete resource with id ${t_id}`
+    })
+}
 
 module.exports = {
     createTask,
+    deleteTask,
     getTasks
 }

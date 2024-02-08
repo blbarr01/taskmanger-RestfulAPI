@@ -59,7 +59,7 @@ class auth_controller{
         })
       }
 
-      console.log('successful auth');
+     
       let token = jwt.sign(db_res.toJSON(), process.env.JWT_SK)
       return res.status(200)
       .cookie('access_token', `Bearer ${token}`, {

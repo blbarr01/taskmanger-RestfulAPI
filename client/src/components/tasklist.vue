@@ -15,7 +15,5 @@
     import {ref} from 'vue'
 
     const res = await fetch('http://localhost:8000/api/tasks')
-    console.log(res.status);
-    console.log(res.statusText);
     const tasks = ref(await res.json())
 </script>

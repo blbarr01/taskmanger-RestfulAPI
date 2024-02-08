@@ -42,9 +42,7 @@ class auth_controller{
       let db_res = await User.findOne({email:user.email}).exec()
       // if no user is found
       if(!db_res){
-        return res.
-        status(400).
-        json({
+        return res.status(400).json({
           msg: "incorrect user credentials"
         })
         
@@ -53,13 +51,12 @@ class auth_controller{
       // if the passwords do not match
       let verified = await authenticate(db_res.password, challenge)
       if (!verified){
-        return res.status(400).
-        json({
+        return res.status(400).json({
           msg: "incorrect user credentials"
         })
       }
 
-     
+     // successful login; sign token and return it to the user
       let token = jwt.sign(db_res.toJSON(), process.env.JWT_SK)
       return res.status(200)
       .cookie('access_token', `Bearer ${token}`, {

@@ -4,7 +4,7 @@
     <form @submit.prevent="onSubmit" action="register" 
     class="flex flex-col gap-4 bg-blue-950 w-1/2 mx-auto space-y-4 py-4">
 <!-- email -->
-        <label class="hidden" for="email">email</label>
+        <label for="email" class="hidden">email</label>
         <input v-model:='email' type="email" id="email" name="email" placeholder="email" 
         class="text-black w-1/3 pt-1 pl-1 mx-auto invalid:border-b-4 invalid:border-red-500">
 
@@ -14,12 +14,12 @@
         class="text-black w-1/3 pt-1 pl-1 mx-auto">
 <!-- phone number -->
         <label for="phone_number" class="hidden">Phone Number</label>
-        <input type="tel" name="phone_number" id="phone_number" placeholder="(123)456-7890" v-bind="tel_num"
+        <input v-model="tel_num" type="tel" name="phone_number" id="phone_number" placeholder="(123)456-7890" 
          class="text-black w-1/3 pt-1 pl-1 mx-auto">
 <!-- password -->
         <label for="password" class="hidden">password</label>
-        <input type="password" name="password" id="password" placeholder="password"
-        @keyup="verify_password(password, $event)" v-model="password" 
+        <input v-model="password" type="password" name="password" id="password" placeholder="password"
+        @keyup="verify_password(password, $event)" 
         :class="[
             (!isValid.password || !isMatch) ? 'border-b-4 border-red-600' :'border-b-4 border-green-600',
             'text-black w-1/3 mx-auto pt-1 pl-1' 
@@ -28,8 +28,8 @@
 
 <!-- confirm password -->
         <label for="conf" class="hidden">confirm password</label>
-        <input  type="password" name="conf" id="conf" placeholder="confirm password"
-        @blur="verify_match" v-model="conf"
+        <input  v-model="conf" type="password" name="conf" id="conf" placeholder="confirm password"
+        @blur="verify_match" 
         @keyup="verify_password(conf, $event)"
         :class="[
             (!isValid.conf || !isMatch) ? 'border-b-4 border-red-600' :'border-b-4 border-green-600',

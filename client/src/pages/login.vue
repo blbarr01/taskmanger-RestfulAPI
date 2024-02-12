@@ -55,8 +55,6 @@ async function onSubmit(){
     } catch (error) {
        console.error(error); 
     }
-    
-
 }
 
 </script>

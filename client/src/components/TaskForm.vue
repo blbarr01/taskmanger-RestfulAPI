@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="">
         <form @submit.prevent="handleSubmit"
             class="container border-2 border-slate-400 rounded flex flex-col my-4 py-4 gap-2 pl-4">
             <label for="title" class="hidden">task name</label>
@@ -67,21 +67,24 @@ async function handleSubmit() {
     }
     error.value=""
     const formData = parseForm()
-    
-    const testData = {
+
+    /*
+     const testData = {
         title:"secure lifesuport",
         notes:[
             'there are 8 wheezers',
             'they are connected to the hivemind'
         ]
-    }
+    } 
+    */
+
     const req = new Request("http://localhost:8000/api/tasks/",{
         method:'POST',
         mode:'cors',  
         headers:{
             'Content-Type': 'application/json'
         },
-        body:JSON.stringify(testData)
+        body:JSON.stringify(formData)
     });
 
     const res = await fetch(req)

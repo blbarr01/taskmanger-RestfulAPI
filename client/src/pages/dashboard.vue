@@ -1,9 +1,9 @@
 <template>
     <h2> task page</h2>
-    <main class="grid grid-cols-2 container mx-auto gap-2">
+    <main class="grid grid-cols-2 container mx-auto gap-6">
         <section>
             <Suspense>
-                <tasklist/>
+            <TaskList/>
             </Suspense>
         </section>
         <section>
@@ -20,13 +20,7 @@
 
 <script setup>
 import TaskForm from '@/components/TaskForm.vue';
-import tasklist from '@/components/tasklist.vue';
+import TaskList from '@/components/tasklist.vue';
 import { ref } from 'vue';
 const showForm = ref(false)
-
-
 </script>
-
-<style>
-
-</style>

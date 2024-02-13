@@ -31,6 +31,9 @@
             <p v-if="error">
                 {{error}}
             </p>
+            <p v-if="success">
+                {{ success }}
+            </p>
         </section>
     </div>
 </template>
@@ -41,6 +44,7 @@ const title = ref('')
 const newNote = ref('')
 const notes = ref([])
 const error = ref("")
+const success = ref("")
 
 function addNote(){
     if(!newNote.value){
@@ -68,7 +72,6 @@ async function handleSubmit() {
     error.value=""
     const formData = parseForm()
 
-    /*
      const testData = {
         title:"secure lifesuport",
         notes:[
@@ -76,7 +79,6 @@ async function handleSubmit() {
             'they are connected to the hivemind'
         ]
     } 
-    */
 
     const req = new Request("http://localhost:8000/api/tasks/",{
         method:'POST',
@@ -84,12 +86,15 @@ async function handleSubmit() {
         headers:{
             'Content-Type': 'application/json'
         },
-        body:JSON.stringify(formData)
+        body:JSON.stringify(testData)
     });
 
     const res = await fetch(req)
     const data = await res.json(res)
-    console.log(data);
+    success.value = data['msg']
+    setTimeout(()=>{
+        success.value = ""
+    }, 2000)
   }
 </script>
 

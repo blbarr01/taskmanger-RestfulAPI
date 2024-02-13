@@ -15,7 +15,6 @@ const verify_token = (req, res, next) =>{
     try {
         let tk = access_token.split(" ")[1]
         let decoded = jwt.verify(tk, process.env.JWT_SK)
-        console.log(decoded);
         let u_id = decoded._id; 
         res.set('x-id', u_id)
         next()

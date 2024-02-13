@@ -6,22 +6,22 @@ async function createTask (req,res){
     let user = res.get("x-id")
     res.removeHeader('x-id')
 
+    // append user_id to task body
     const task = req.body;
     task['user_id'] = user
+    // 
     try {
-    const status = await Task.create(task)
-    console.log(status);
-    
+        const status = await Task.create(task)
+        console.log(status);
     } catch (error) {
         res.send('error').status(500)
         console.error(error);    
         return
     }
 
-    res.status(201)
-    .json({
+    res.status(201).json({
         user,
-        msg:'we got your post'
+        msg:'task successfully created'
     })
 }
 
@@ -29,14 +29,12 @@ async function createTask (req,res){
 async function getTasks (req, res){
     let user = res.get("x-id")
     res.removeHeader('x-id')
-    console.log(user);
-    let data  = await Task.find().where("user_id").equals(user)
-    res.json(data)
+    let user_tasks = await Task.find().where("user_id").equals(user)
+    res.json(user_tasks)
 }
 
 async function deleteTask(req, res){
     let t_id = req.params.id
-    console.log(t_id);
     let status = await Task.findByIdAndDelete(t_id)
     console.log(status);
     res.json({

@@ -8,7 +8,7 @@
             <!-- display notes to users  -->
             <ul v-if="notes" id="note-holder" class="list-disc ml-4">
                 <li v-for="n,index in notes" :key="index">
-                    {{n}} 
+                  {{n}} 
                     <span class="text-red-600 rounded-md bg-slate-300 hover:bg-slate-200  hover:text-red-700 px-2 ml-1 text-xl cursor-pointer"
                     @click="removeNote(n)">-</span>
                 </li>
@@ -71,7 +71,7 @@ async function handleSubmit() {
     }
     error.value=""
     const formData = parseForm()
-
+/* 
      const testData = {
         title:"secure lifesuport",
         notes:[
@@ -79,14 +79,14 @@ async function handleSubmit() {
             'they are connected to the hivemind'
         ]
     } 
-
+ */
     const req = new Request("http://localhost:8000/api/tasks/",{
         method:'POST',
         mode:'cors',  
         headers:{
             'Content-Type': 'application/json'
         },
-        body:JSON.stringify(testData)
+        body:JSON.stringify(formData)
     });
 
     const res = await fetch(req)

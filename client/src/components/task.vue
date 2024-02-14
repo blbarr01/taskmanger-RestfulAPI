@@ -10,7 +10,7 @@
             <input type="text" name="task-title" :placeholder="props.task.title"
             :class="[showEdit?'':'hidden', 'text-black']" @blur="updateTitle($event)">
         <!-- the respective notes  -->
-            <ul v-if="props.task.notes" class="ml-4 list-disc">
+            <ul v-if="props.task.notes" class="ml-4 list-decimal">
                 <li v-for="note in props.task.notes">{{note}}</li>
             </ul>
         

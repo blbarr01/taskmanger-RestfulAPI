@@ -2,10 +2,7 @@
     <ul>
         <Task v-for="task in tasks" 
         :key="task._id"
-        :id = task._id
-        :title="task.title"
-        :notes="task.notes"
-        :completed_status="task.completed_status"
+        :task = task
         />
     </ul>
 </template>

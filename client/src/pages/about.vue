@@ -1,27 +1,13 @@
-<template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <p @click="makereq">click to fetch</p>
-  </div>
-</template>
-
 <script setup>
-async function makereq(){
-  try {
-  const ep = new URL("http://localhost:8000/api/test/")
-  const resp = await fetch(ep, {
-      mode:"cors"
-  })
-  console.log(resp);
-  const data = await resp.json()
-  console.log(data);
-  } catch (error) {
-  
-    console.error(error);  
-  }
-}
+import Task from '@/components/task.vue';
+
+let dt = {
+        user_id: "65834d8950dd28c54fbaa0df",
+        title:"Walk the dog",
+        notes: ["walk for at least 1/2 mile", "watch out  for cats"]
+        }
 </script>
 
-<style>
-
-</style>
+<template>
+  <Task :task="dt"/>
+</template>

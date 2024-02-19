@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-    import Task from "@/components/task.vue"
+    import Task from "@/components/Task/Task.vue"
     import {ref} from 'vue'
 
     const res = await fetch('http://localhost:8000/api/tasks')

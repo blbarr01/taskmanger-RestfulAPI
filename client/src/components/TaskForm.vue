@@ -16,7 +16,8 @@
             <!--field to add new notes  -->
             <div class="flex flex-row gap-4">
                 <label for="note" class="hidden">notes</label>
-                <input type="text" name="note" id="note" placeholder="additional notes" v-model="newNote" class="text-black">
+               
+                <textarea cols="30"  name="note" id="note" placeholder="additional notes" v-model="newNote" class="text-black"></textarea>
                 <button type="button" class="bg-slate-300 text-blue-800  hover:bg-slate-200 hover:text-blue-900 rounded-lg p-2"
                 @click="addNote">
                     add note

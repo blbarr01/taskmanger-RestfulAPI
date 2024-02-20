@@ -61,7 +61,7 @@ class auth_controller{
       return res.status(200)
       .cookie('access_token', `Bearer ${token}`, {
         httpOnly:true,
-        expires: new Date(Date.now() + 60000) 
+        expires: new Date(Date.now() + 90000) 
         })
       .json({
         msg: "login successful",

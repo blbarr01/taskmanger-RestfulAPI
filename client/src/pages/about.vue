@@ -1,5 +1,5 @@
 <script setup>
-import Task from '@/components/task.vue';
+import Task from '@/components/Task/Task.vue';
 
 let dt = {
         user_id: "65834d8950dd28c54fbaa0df",

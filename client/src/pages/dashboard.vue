@@ -20,7 +20,7 @@
 
 <script setup>
 import TaskForm from '@/components/TaskForm.vue';
-import TaskList from '@/components/tasklist.vue';
+import TaskList from '@/components/TaskList.vue';
 import { ref } from 'vue';
 const showForm = ref(false)
 </script>

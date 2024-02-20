@@ -1,6 +1,6 @@
 const express = require('express');
-const auth = require('./routes/auth.routes.js');
-const tasks = require('./routes/tasks.routes.js');
+const authRouter = require('./routes/auth.routes.js');
+const taskRouter = require('./routes/tasks.routes.js');
 const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./db.js');
@@ -12,16 +12,16 @@ const PORT = 8000
 
 app.
 // add universal middleware
-use(bodyParser.json()).
+use(express.json()).
+use(bodyParser.urlencoded({ extended: false })).
 use(cors()).
 use(cookieParser()).
-use(bodyParser.urlencoded({ extended: false })).
 // serve front end files
 use(express.static(path.join(__dirname+'/client/dist'))).
 // routers  
-use('/api/tasks',tasks).
-use('/api/auth', auth).
-listen(8000,async ()=>{
+use('/api/tasks',taskRouter).
+use('/api/auth', authRouter).
+listen(PORT,async ()=>{
 
   try {
     const conn = await db()

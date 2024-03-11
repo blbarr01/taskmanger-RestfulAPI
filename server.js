@@ -3,7 +3,7 @@ const authRouter = require('./routes/auth.routes.js');
 const taskRouter = require('./routes/tasks.routes.js');
 const bodyParser = require('body-parser');
 const path = require('path');
-const db = require('./db.js');
+const db = require('./config/db.js');
 const cookieParser = require('cookie-parser')
 const cors = require('cors');
 

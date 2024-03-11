@@ -2,3 +2,5 @@ node_modules
 dummy_tasks.json
 dummy.json
 upload.js
+api.md
+.env

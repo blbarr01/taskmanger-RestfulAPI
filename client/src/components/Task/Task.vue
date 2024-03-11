@@ -2,7 +2,7 @@
     <li class="border-2 rounded border-gray-400 my-2 p-4 gap-4 flex flex-row">
         <div  class="info container m-auto border-blue-200 border-2 p-2">
             <TaskHeader :title="task.title" @update="updateTitle"/>
-            <TaskDetails v-if="task.notes" :notes ="task.notes"/>
+            <TaskDetails v-if="task.notes"/>
         </div>
         
         <div id="options" class="container mx-auto flex flex-col gap-4 place-items-start pl-4">
@@ -26,8 +26,11 @@ import TaskDetails from './TaskDetails.vue';
 const props = defineProps({task:Object})
 
 let task = toRef(props.task)
-console.log(isReactive(task), isRef(task));
-provide('task', task)
+
+provide('task', {
+    task,
+    updateTitle
+})
 
 async function handleDelete(id){
     let endpoint = `http://localhost:8000/api/tasks/${id}`
@@ -46,12 +49,13 @@ async function handleUpdate(){
 
 }
 
+
 function updateTitle(title){
-    console.log('update initiated');
-    console.log(toValue(task));
-}
-
-
+        if(!title){
+            return
+        }
+        task.value.title = title
+    }
 
 </script>
 

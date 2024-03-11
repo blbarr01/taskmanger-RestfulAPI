@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const {Schema, model} = mongoose
+const User = require('./User')
 
 const taskSchema = new Schema({
-    user_id:Schema.Types.ObjectId,
+    user_id:{
+        type: Schema.Types.ObjectId, ref:User
+    },
     title: String,
     notes:[String], 
     completed_status: {
